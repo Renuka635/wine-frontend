@@ -13,10 +13,12 @@
 <p id="result"></p>
 
 <script>
-async function predict() {
+async function predict(){
 
-let features = [7.4,0.70,0.00,1.9,0.076,11,34,0.9978,3.51,0.56,
-document.getElementById("alcohol").value];
+let features = [
+7.4,0.70,0.00,1.9,0.076,11,34,0.9978,3.51,0.56,
+parseFloat(document.getElementById("alcohol").value)
+];
 
 let res = await fetch("https://wine-api-x5hw.onrender.com/predict",{
 method:"POST",
@@ -25,9 +27,12 @@ body:JSON.stringify({features})
 });
 
 let data = await res.json();
-document.getElementById("result").innerText="Quality: "+data.quality;
+
+document.getElementById("result").innerText =
+"Quality: " + data.prediction;
 }
 </script>
+
 
 </body>
 </html>
